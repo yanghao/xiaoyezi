@@ -135,7 +135,7 @@
                         margin-top: 5px;
                         color: #000000;
                         text-decoration: none;
-                        font-size: 15px;
+                        font-size: 22px;
                         font-weight: bold;
                 }
 
@@ -230,7 +230,89 @@
                 p {
                         text-align: left;
                 }
+
+                .codehilitetable {
+                        text-align: left;
+                        background-color: #DDDDDD;
+                        margin-left: 30px;
+                }
+
+                .linenodiv {
+                        margin-right: 10px;
+                }
+
+.hll { background-color: #ffffcc }
+.c { color: #408080; font-style: italic } /* Comment */
+.err { border: 1px solid #FF0000 } /* Error */
+.k { color: #008000; font-weight: bold } /* Keyword */
+.o { color: #666666 } /* Operator */
+.cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.cp { color: #BC7A00 } /* Comment.Preproc */
+.c1 { color: #408080; font-style: italic } /* Comment.Single */
+.cs { color: #408080; font-style: italic } /* Comment.Special */
+.gd { color: #A00000 } /* Generic.Deleted */
+.ge { font-style: italic } /* Generic.Emph */
+.gr { color: #FF0000 } /* Generic.Error */
+.gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.gi { color: #00A000 } /* Generic.Inserted */
+.go { color: #808080 } /* Generic.Output */
+.gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.gs { font-weight: bold } /* Generic.Strong */
+.gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.gt { color: #0040D0 } /* Generic.Traceback */
+.kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.kp { color: #008000 } /* Keyword.Pseudo */
+.kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.kt { color: #B00040 } /* Keyword.Type */
+.m { color: #666666 } /* Literal.Number */
+.s { color: #BA2121 } /* Literal.String */
+.na { color: #7D9029 } /* Name.Attribute */
+.nb { color: #008000 } /* Name.Builtin */
+.nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.no { color: #880000 } /* Name.Constant */
+.nd { color: #AA22FF } /* Name.Decorator */
+.ni { color: #999999; font-weight: bold } /* Name.Entity */
+.ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.nf { color: #0000FF } /* Name.Function */
+.nl { color: #A0A000 } /* Name.Label */
+.nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.nt { color: #008000; font-weight: bold } /* Name.Tag */
+.nv { color: #19177C } /* Name.Variable */
+.ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.w { color: #bbbbbb } /* Text.Whitespace */
+.mf { color: #666666 } /* Literal.Number.Float */
+.mh { color: #666666 } /* Literal.Number.Hex */
+.mi { color: #666666 } /* Literal.Number.Integer */
+.mo { color: #666666 } /* Literal.Number.Oct */
+.sb { color: #BA2121 } /* Literal.String.Backtick */
+.sc { color: #BA2121 } /* Literal.String.Char */
+.sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.s2 { color: #BA2121 } /* Literal.String.Double */
+.se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.sh { color: #BA2121 } /* Literal.String.Heredoc */
+.si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.sx { color: #008000 } /* Literal.String.Other */
+.sr { color: #BB6688 } /* Literal.String.Regex */
+.s1 { color: #BA2121 } /* Literal.String.Single */
+.ss { color: #19177C } /* Literal.String.Symbol */
+.bp { color: #008000 } /* Name.Builtin.Pseudo */
+.vc { color: #19177C } /* Name.Variable.Class */
+.vg { color: #19177C } /* Name.Variable.Global */
+.vi { color: #19177C } /* Name.Variable.Instance */
+.il { color: #666666 } /* Literal.Number.Integer.Long */
                 </style>
+                <script language="javascript" type="text/javascript">
+                        function recover_email(s)
+                        {
+                                var a,i;
+                                a = "";
+                                for (i=0; i < s.length; i++)
+                                        a += String.fromCharCode(s.charCodeAt(i) - 1);
+                                return a;
+                        }
+                </script>
                 <title>xiaoyezi.org</title>
         </head>
 
@@ -246,10 +328,9 @@
                 <%block name="topnavi">
                         <div id="menu">
                                 <ul>
-                                        <li class="menuitem"><a href="#">Home</a></li>
-                                        <li class="menuitem"><a href="#">About</a></li>
-                                        <li class="menuitem"><a href="#">Home</a></li>
-                                        <li class="menuitem"><a href="#">About</a></li>
+                                        % for item in menu_list:
+                                        <li class="menuitem"><a href="${request_root}/${item[0]}">${item[1]}</a></li>
+                                        % endfor
                                 </ul>
                         </div>
                 </%block>
@@ -260,12 +341,9 @@
 
                                 <div id="leftmenu_main">
                                         <ul>
-                                                <li><a href="#">Web Tech</a></li>
-                                                <li><a href="#">Web Tech</a></li>
-                                                <li><a href="#">Web Tech</a></li>
-                                                <li><a href="#">Web Tech</a></li>
-                                                <li><a href="#">Web Tech</a></li>
-                                                <li><a href="#">Web Tech</a></li>
+                                                % for item in leftmenu_list:
+                                                <li><a href="${request_root}/${category}/${item[0]}">${item[1]}</a></li>
+                                                % endfor
                                         </ul>
                                 </div>
 
@@ -278,19 +356,7 @@
                                 <div id="content_top"></div>
 
                                 <div id="content_main">
-                                        &nbsp;
-                                        <h2>content title is going here 一生有你</h2>
-                                        &nbsp;<hr />&nbsp;
-                                        <h3>Template notes</h3>
-                                        <p>something goes here while make it has something. But no one knows how much can be put into here</p>
-                                        <p>中文测试</p>
-                                        <p>body: request_uri: ${req_uri}</p>
-                                        <p>&nbsp;</p>
-                                        <h3>Template notes</h3>
-                                        <p>something goes here while make it has something. But no one knows how much can be put into here</p>
-                                        <p>中文测试</p>
-                                        <p>body: request_uri: ${req_uri}</p>
-                                        <p>&nbsp;</p>
+                                    ${body}
                                 </div>
 
                                 <div id="content_bottom"></div>
@@ -302,7 +368,7 @@
                 
                 <%block name="footer">
                         <div id="footer">
-                                <h3><a href="#">Hua Yanghao's home page</a></h3>
+                                <h3><script language="javascript" type="text/javascript">document.write(recover_email("ivbzbohibpAhnbjm/dpn"));</script></a></h3>
                         </div>
                 </%block>
                 </div>
