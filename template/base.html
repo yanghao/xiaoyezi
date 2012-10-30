@@ -167,6 +167,22 @@
                         background-color: #BBBBBB;
                 }
 
+                #content_main p {
+                        margin-top: 13px;
+                        margin-bottom: 13px;
+                        font-size: 18px;
+                }
+
+                #content_main li {
+                        font-size: 18px;
+                }
+
+                #content_main blockquote {
+                        margin-left: 26px;
+                        font-size: 22px;
+                        background-color: #DDDDDD;
+                }
+
                 #content_bottom {
                         width: 689px;
                         height: 13px;
@@ -177,6 +193,7 @@
                         width: 960px;
                         height: auto;
                         background-color: #BBBBBB;
+                        margin-bottom: 13px;
                 }
 
                 #footer h3 a, #footer h3 a:visited {
@@ -304,7 +321,7 @@
 .vi { color: #19177C } /* Name.Variable.Instance */
 .il { color: #666666 } /* Literal.Number.Integer.Long */
                 </style>
-                <script language="javascript" type="text/javascript">
+                <script type="text/javascript">
                         function recover_email(s)
                         {
                                 var a,i;
@@ -330,7 +347,7 @@
                         <div id="menu">
                                 <ul>
                                         % for item in menu_list:
-                                        <li class="menuitem"><a href="${request_root}/${item[0]}">${item[1]}</a></li>
+                                        <li class="menuitem"><a href="${request_root}/${lang}/${item[0]}">${item[1]}</a></li>
                                         % endfor
                                 </ul>
                         </div>
@@ -343,7 +360,7 @@
                                 <div id="leftmenu_main">
                                         <ul>
                                                 % for item in leftmenu_list:
-                                                <li><a href="${request_root}/${category}/${item[0]}">${item[1]}</a></li>
+                                                <li><a href="${request_root}/${lang}/${category}/${item[0]}">${item[1]}</a></li>
                                                 % endfor
                                         </ul>
                                 </div>
@@ -369,7 +386,7 @@
                 
                 <%block name="footer">
                         <div id="footer">
-                                <h3><script language="javascript" type="text/javascript">document.write(recover_email("ivbzbohibpAhnbjm/dpn"));</script></a></h3>
+                                <h3>contact email: <script type="text/javascript">document.write(recover_email("ivbzbohibpAhnbjm/dpn"));</script></h3>
                         </div>
                 </%block>
                 </div>

@@ -1,11 +1,10 @@
 import webapp2
 
-from view.frontpage import FrontPage
-from view.static import StaticReadme, StaticFolder, StaticMarkdown
+from view.static import StaticBlog
 
-urls = [ (r'/s/?', StaticReadme),
-         (r'/s/([A-Za-z0-9-]*)/?', StaticFolder),
-         (r'/s/([A-Za-z0-9-]+)/([-A-Za-z0-9\.]+)/?', StaticMarkdown),
+urls = [ (r'/blog/?([a-z]*)/?([A-Za-z0-9-]*)/?([-A-Za-z0-9\.]*)/?', StaticBlog),
 ]
+
+
 
 application = webapp2.WSGIApplication(urls, debug=True)
