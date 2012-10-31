@@ -2,7 +2,6 @@ import os
 import codecs
 from webapp2 import RequestHandler, Response
 from mako.template import Template
-from mako.lookup import TemplateLookup
 from markdown import markdown
 
 from view.cache import CacheHandler
@@ -11,8 +10,7 @@ from config import static_root
 from config import template_root
 from config import request_root
 from config import app_root
-
-template_lookup = TemplateLookup([os.path.join(app_root, 'template')])
+from config import template_lookup
 
 class StaticBlog(CacheHandler):
     def __init__(self, request=None, response=None):
@@ -60,30 +58,32 @@ class StaticBlog(CacheHandler):
         return html
 
     def fetch_get_request(self, lang='', folder='', filename=''):
+        env = {'request_root':request_root}
         if lang == '': # /blog/
             t = Template(filename=os.path.join(template_root, 'front.html'), lookup=template_lookup)
-            return t.render(request_root=request_root)
+            return t.render(**env)
         else:
+            t = Template(filename=os.path.join(template_root, 'base.html'), lookup=template_lookup)
+            menu_list = self.create_top_menu_list(lang, 'README', static_root)
+            leftmenu_list = self.create_left_menu_list(lang, folder, static_root)
+            env['menu_list'] = menu_list
+            env['leftmenu_list'] = leftmenu_list
+            env['lang'] = lang
             if folder == '': # /blog/lang/
-                t = Template(filename=os.path.join(template_root, 'base.html'), lookup=template_lookup)
-                menu_list = self.create_top_menu_list(lang, 'README', static_root)
-                leftmenu_list = self.create_left_menu_list(lang, 'home', static_root)
-                category = 'home'
-                body = self.load_markdown(lang, category, 'README', static_root)
-                return t.render(menu_list=menu_list, category=category, leftmenu_list=leftmenu_list, request_root=request_root, body=body, lang=lang)
+                category = ''
+                env['category'] = category
+                body = ''
+                env['body'] = body
+                return t.render(**env)
             else:
+                env['category'] = folder
+                category = folder
                 if filename == '':  # /blog/lang/folder
-                    t = Template(filename=os.path.join(template_root, 'base.html'), lookup=template_lookup)
-                    menu_list = self.create_top_menu_list(lang, 'README', static_root)
-                    leftmenu_list = self.create_left_menu_list(lang, folder, static_root)
-                    category = folder
                     body = self.load_markdown(lang, category, 'README', static_root)
-                    return t.render(menu_list=menu_list, category=category, leftmenu_list=leftmenu_list, request_root=request_root, body=body, lang=lang)
+                    env['body'] = body
+                    return t.render(**env)
                 else: # /blog/lang/folder/article
-                    t = Template(filename=os.path.join(template_root, 'base.html'), lookup=template_lookup)
-                    menu_list = self.create_top_menu_list(lang, 'README', static_root)
-                    leftmenu_list = self.create_left_menu_list(lang, folder, static_root)
-                    category = folder
                     body = self.load_markdown(lang, category, filename, static_root)
-                    return t.render(menu_list=menu_list, category=category, leftmenu_list=leftmenu_list, request_root=request_root, body=body, lang=lang)
+                    env['body'] = body
+                    return t.render(**env)
         return "req: %s, lang: %s, folder: %s, filename: %s" % (self.request.uri, lang, folder, filename)
