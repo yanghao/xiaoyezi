@@ -41,8 +41,8 @@ class StaticBlog(CacheHandler):
                     continue
                 else: # this is an item
                     item = line.split(' : ')
-                    if len(item) != 3:
-                        item = ["Error", "Error", "Error"]
+                    if len(item) != 2:
+                        item = ["Error", "Error"]
                     item_list.append(item)
         return item_list
 
