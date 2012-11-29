@@ -3,6 +3,8 @@ import codecs
 from webapp2 import RequestHandler, Response
 from mako.template import Template
 from markdown import markdown
+from time import strftime
+from time import localtime
 
 from view.cache import CacheHandler
 from config import mc
@@ -11,6 +13,8 @@ from config import template_root
 from config import request_root
 from config import app_root
 from config import template_lookup
+
+TIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 class StaticBlog(CacheHandler):
     def __init__(self, request=None, response=None):
@@ -47,18 +51,21 @@ class StaticBlog(CacheHandler):
         return item_list
 
     def load_markdown(self, lang, category, filename, static_root):
+        file_path = os.path.join(static_root, lang, category, filename)
+        update_time = ''
         try:
-            with codecs.open(os.path.join(static_root, lang, category, filename), mode='r', encoding="utf8") as fd:
+            with codecs.open(file_path, mode='r', encoding="utf8") as fd:
                 text = fd.read()
+            update_time = strftime(TIME_FORMAT, localtime(os.path.getmtime(file_path)))
         except IOError:
             text = "## Not Found\n### File: %s\n### category: %s\n### root: %s\n" % (filename, category, static_root)
         if text == '': # empty doc
             text = "# Empty Document"
         html = markdown(text, extensions=['codehilite(force_linenos=True)'])
-        return html
+        return html, update_time
 
     def fetch_get_request(self, lang='', folder='', filename=''):
-        env = {'request_root':request_root}
+        env = {'request_root':request_root, 'update_time':strftime(TIME_FORMAT)}
         if lang == '': # /blog/
             t = Template(filename=os.path.join(template_root, 'front.html'), lookup=template_lookup)
             return t.render(**env)
@@ -79,11 +86,13 @@ class StaticBlog(CacheHandler):
                 env['category'] = folder
                 category = folder
                 if filename == '':  # /blog/lang/folder
-                    body = self.load_markdown(lang, category, 'README', static_root)
+                    body,update_time = self.load_markdown(lang, category, 'README', static_root)
                     env['body'] = body
+                    env['update_time'] = update_time
                     return t.render(**env)
                 else: # /blog/lang/folder/article
-                    body = self.load_markdown(lang, category, filename, static_root)
+                    body,update_time = self.load_markdown(lang, category, filename, static_root)
                     env['body'] = body
+                    env['update_time'] = update_time
                     return t.render(**env)
         return "req: %s, lang: %s, folder: %s, filename: %s" % (self.request.uri, lang, folder, filename)
