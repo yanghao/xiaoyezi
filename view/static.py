@@ -87,12 +87,9 @@ class StaticBlog(CacheHandler):
                 category = folder
                 if filename == '':  # /blog/lang/folder
                     body,update_time = self.load_markdown(lang, category, 'README', static_root)
-                    env['body'] = body
-                    env['update_time'] = update_time
-                    return t.render(**env)
                 else: # /blog/lang/folder/article
                     body,update_time = self.load_markdown(lang, category, filename, static_root)
-                    env['body'] = body
-                    env['update_time'] = update_time
-                    return t.render(**env)
+                env['body'] = body
+                env['update_time'] = update_time
+                return t.render(**env)
         return "req: %s, lang: %s, folder: %s, filename: %s" % (self.request.uri, lang, folder, filename)
