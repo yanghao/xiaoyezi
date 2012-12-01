@@ -24,6 +24,7 @@ class StaticBlog(CacheHandler):
         full_path = os.path.join(static_root, lang, path)
         items = os.listdir(full_path)
         items.sort()
+        items.reverse()
         item_list = []
         for item in items:
             if os.path.isdir(os.path.join(full_path, item)):
