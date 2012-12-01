@@ -2,7 +2,7 @@ import webapp2
 
 from view.static import StaticBlog
 
-urls = [ (r'/blog/?([a-z]*)/?([A-Za-z0-9-]*)/?([-A-Za-z0-9\.]*)/?', StaticBlog),
+urls = [ (r'/blog/?([a-z]*)/?([A-Za-z0-9-]*)/?(.*)/?', StaticBlog),
 ]
 
 

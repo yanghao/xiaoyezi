@@ -27,6 +27,7 @@ class StaticBlog(CacheHandler):
         items.reverse()
         item_list = []
         for item in items:
+            item = item.decode('utf-8')
             if os.path.isdir(os.path.join(full_path, item)):
                 continue # ignore folders
             elif item == "README":
