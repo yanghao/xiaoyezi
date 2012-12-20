@@ -15,6 +15,7 @@ from config import app_root
 from config import template_lookup
 
 TIME_FORMAT = "%Y-%m-%d %H:%M:%S"
+NUM_TEXT = 7
 
 class StaticBlog(CacheHandler):
     def __init__(self, request=None, response=None):
@@ -35,7 +36,22 @@ class StaticBlog(CacheHandler):
             elif item[0] == '.':
                 continue # ignore vim cache files
             else:
-                item_list.append((item, item.split('.')[1]))
+                item_s1, item_s2 = item.split('.')
+                unicode_num = 0
+                ascii_num = 0
+                n = 0
+                tmp = ''
+                for i in item_s2:
+                    if ord(i) > 255:
+                        unicode_num += 1
+                    else:
+                        ascii_num += 1
+                    n += 1
+                    if (unicode_num + (ascii_num/2.0)) >= NUM_TEXT:
+                        break
+                if n < len(item_s2):
+                    tmp = '..'
+                item_list.append((item, item_s2, item_s2[0:n]+tmp))
         return item_list
 
     def create_top_menu_list(self, lang='en', filename='', static_root=static_root):
