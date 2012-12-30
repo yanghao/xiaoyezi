@@ -24,7 +24,9 @@
                         <div id="menu">
                                 <ul>
                                         % for item in menu_list:
-                                        <li class="menuitem"><a href="${request_root}/${lang}/${item[0]}">${item[1]}</a></li>
+                                        <div id="${item[2]}">
+                                        <li ><a title="${item[0]}" href="${request_root}/${lang}/${item[0]}">${item[1]}</a></li>
+                                        </div>
                                         % endfor
                                 </ul>
                         </div>

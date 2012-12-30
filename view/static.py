@@ -62,9 +62,10 @@ class StaticBlog(CacheHandler):
                 if line[0] == '#': # this is comment
                     continue
                 else: # this is an item
-                    item = line.split(' : ')
+                    item = list(line.split(' : '))
                     if len(item) != 2:
                         item = ["Error", "Error"]
+                    item.append('menuitem')
                     item_list.append(item)
         return item_list
 
@@ -101,6 +102,9 @@ class StaticBlog(CacheHandler):
             else:
                 env['category'] = folder
                 category = folder
+                for item in menu_list:
+                    if item[0] == folder:
+                        item[2] = 'menuitem_now'
                 if filename == '':  # /blog/lang/folder
                     body,update_time = self.load_markdown(lang, category, 'README', static_root)
                 else: # /blog/lang/folder/article
