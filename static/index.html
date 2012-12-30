@@ -1,0 +1,328 @@
+<!doctype html>
+<html>
+        <head>
+                <meta charset="UTF-8" />
+                <meta name="description" content="" />
+                <meta name="keywords" content="" />
+                <style type="text/css">
+                body {
+                        margin: 0;
+                        padding: 0;
+                        text-align: left;
+                        font: 12px Arial, Helvetica, sans-serif;
+                        font-size: 13px;
+                        color: #061C37;
+                        background: #CCCCCC;
+                }
+
+                * {
+                        margin: 0 auto 0 auto;
+                        text-align: left;
+                }
+
+                #container {
+                        display: block;
+                        height: auto;
+                        position: relative;
+                        width: 960px;
+                }
+
+                #header {
+                        height: 85px;
+                        width: 960px;
+                        background-color: #BBBBBB;
+                        margin-top: 13px;
+                }
+
+                #header h1 {
+                        position: absolute;
+                        text-align: left;
+                        color: #000000;
+                        font-size: 43px;
+                        left: 14px;
+                        top: 18px;
+                }
+
+                #header h2 {
+                        position: absolute;
+                        text-align: right;
+                        color: #000000;
+                        left: 490px;
+                        top: 38px;
+                        width: 400px;
+                }
+
+                #header_bottom {
+                        width: 204px;
+                        height: 13px;
+                        background-color: #555555;
+                }
+
+                #menu {
+                        display: block;
+                        float: left;
+                        clear: both;
+                        width: 960px;
+                        height: 54px;
+                        background-color: #BBBBBB;
+                }
+
+                #menu li a {
+                        font-size: 24px;
+                        color: #000000;
+                }
+
+                #menu li a:hover {
+                        color: #0000FF;
+                }
+
+                #leftmenu {
+                        margin-top: 0px;
+                        width: 204px;
+                        float: left;
+                        background-color: #BBBBBB;
+                }
+
+                #leftmenu_top {
+                        width: 204px;
+                        height: 13px;
+                        background-color: #555555;
+                }
+
+                #leftmenu_bottom {
+                        width: 204px;
+                        height: 13px;
+                        background-color: #555555;
+                }
+
+                #leftmenu_main {
+                        width: 204px;
+                        height: auto;
+                        background-color: #BBBBBB;
+                }
+
+                #leftmenu_main ul {
+                        list-style: none;
+                        padding: 0px;
+                        width: 204px;
+                }
+
+                #leftmenu_main h3 {
+                        list-style: none;
+                        padding: 0px;
+                        width: 204px;
+                        color: #000000;
+                        padding-left: 10px;
+                        padding-bottom: 14px;
+                }
+
+                #leftmenu_main ul li {
+                        list-style: none;
+                        padding: 0px;
+                        width: 204px;
+                        text-align: left;
+                }
+
+                #leftmenu_main ul li a, #leftmenu_main ul li a:visited {
+                        display: block;
+                        list-style: none;
+                        padding: 0px;
+                        width: 192px;
+                        padding-left: 12px;
+                        padding-top: 4px;
+                        height: 30px;
+                        text-align: left;
+                        margin-top: 5px;
+                        color: #000000;
+                        text-decoration: none;
+                        font-size: 22px;
+                        font-weight: bold;
+                }
+
+                #leftmenu_main ul li a:hover {
+                        color: #0000FF;
+                }
+
+                #content {
+                        display: block;
+                        float: left;
+                        width: 689px;
+                        height: auto;
+                        padding-left: 10px;
+                        padding-right: 10px;
+                        padding-top: 13px;
+                        padding-bottom: 5px;
+                }
+
+                #content_top {
+                        width: 689px;
+                        height: 0px;
+                }
+
+                #content_main {
+                        color: #000000;
+                        width: 689px;
+                        padding-left: 15px;
+                        padding-right: 42px;
+                        background-color: #BBBBBB;
+                }
+
+                #content_main p {
+                        margin-top: 13px;
+                        margin-bottom: 13px;
+                        font-size: 18px;
+                }
+
+                #content_main li {
+                        font-size: 18px;
+                }
+
+                #content_main blockquote {
+                        margin-left: 26px;
+                        font-size: 22px;
+                        background-color: #DDDDDD;
+                }
+
+                #content_bottom {
+                        width: 689px;
+                        height: 13px;
+                }
+
+                #footer {
+                        color: #000000;
+                        float: left;
+                        width: 960px;
+                        height: auto;
+                        background-color: #BBBBBB;
+                }
+
+                #footer h3 a, #footer h3 a:visited {
+                        display: inline;
+                        text-align: center;
+                        font-size: 16px;
+                        text-decoration: none;
+                        color: #000000;
+                }
+
+                #menu ul {
+                        list-style: none;
+                        padding: 0px;
+                        margin-left: auto;
+                        width: 960px;
+                }
+
+                #menu li {
+                        list-style: none;
+                        padding: 0px;
+                        display: inline;
+                }
+
+                #menu a {
+                        float: left;
+                        height: 36px;
+                        display: block;
+                        text-align: center;
+                        text-decoration: none;
+                        color: #FFFFFF;
+                        font-weight: bold;
+                        padding-top: 18px;
+                        font-size: 15px;
+                        padding-left: 13px;
+                        padding-right: 13px;
+                }
+
+                #menu a:hover {
+                }
+
+                #content p {
+                }
+
+                body {
+                        background-color: #555555;
+                }
+
+                html, body {
+                        text-align: center;
+                }
+
+                p {
+                        text-align: left;
+                }
+
+                .codehilitetable {
+                        text-align: left;
+                        background-color: #DDDDDD;
+                        margin-left: 30px;
+                }
+
+                .linenodiv {
+                        margin-right: 10px;
+                }
+
+                </style>
+                <script language="javascript" type="text/javascript">
+                        function recover_email(s)
+                        {
+                                var a,i;
+                                a = "";
+                                for (i=0; i < s.length; i++)
+                                        a += String.fromCharCode(s.charCodeAt(i) - 1);
+                                return a;
+                        }
+                </script>
+                <title>xiaoyezi.org</title>
+        </head>
+
+        <body>
+                <div id="container">
+                
+                        <div id="header">
+                                <h1><a href="/">xiaoyezi.org</a></h1>
+                                <h2>Coding since 2005. -</h2>
+                        </div>
+                
+                        <div id="header_bottom"></div>
+                
+                        <div id="menu">
+                                <ul>
+                                        <li class="menuitem"><a href="/blog/en">Blog</a></li>
+                                        <li class="menuitem"><a href="/blog/zh">博客</a></li>
+                                </ul>
+                        </div>
+                
+
+                
+                        <div id="leftmenu">
+                                <div id="leftmenu_top"></div>
+
+                                <div id="leftmenu_main">
+                                        <ul>
+                                        </ul>
+                                </div>
+
+                                <div id="leftmenu_bottom"></div>
+                        </div>
+                
+
+                
+                        <div id="content">
+                                <div id="content_top"></div>
+
+                                <div id="content_main">
+                                </div>
+
+                                <div id="content_bottom"></div>
+                        </div>
+                
+
+                
+                
+                
+                
+                        <div id="footer">
+                                <h3>&nbsp; &nbsp; <script type="text/javascript">document.write(recover_email("ivbzbohibpAhnbjm/dpn"));</script> &nbsp; &nbsp; 陕ICP备1201153号 &copy; 2012-2013 Hua Yanghao &nbsp; &nbsp; Last updated: - </h3>
+                        </div>
+                
+                </div>
+        </body>
+</html>
