@@ -1,4 +1,5 @@
 import os
+import logging
 import codecs
 from webapp2 import RequestHandler, Response
 from mako.template import Template
@@ -51,7 +52,7 @@ class StaticBlog(CacheHandler):
                         break
                 if n < len(item_s2):
                     tmp = '..'
-                item_list.append((item, item_s2, item_s2[0:n]+tmp))
+                item_list.append([item, item_s2, item_s2[0:n]+tmp, 'leftmenu_normal'])
         return item_list
 
     def create_top_menu_list(self, lang='en', filename='', static_root=static_root):
@@ -108,6 +109,9 @@ class StaticBlog(CacheHandler):
                 if filename == '':  # /blog/lang/folder
                     body,update_time = self.load_markdown(lang, category, 'README', static_root)
                 else: # /blog/lang/folder/article
+                    for item in leftmenu_list:
+                        if item[0] == filename.decode('utf-8'):
+                            item[3] = 'leftmenu_now'
                     body,update_time = self.load_markdown(lang, category, filename, static_root)
                 env['update_time'] = update_time
             env['body'] = body

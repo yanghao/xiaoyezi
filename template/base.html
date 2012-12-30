@@ -39,7 +39,9 @@
                                 <div id="leftmenu_main">
                                         <ul>
                                                 % for item in leftmenu_list:
-                                                <li><a href="${request_root}/${lang}/${category}/${item[0]}" title="${item[1]}">${item[2]}</a></li>
+                                                <div id="${item[3]}">
+                                                <li class=""><a class="" href="${request_root}/${lang}/${category}/${item[0]}" title="${item[1]}">${item[2]}</a></li>
+                                                </div>
                                                 % endfor
                                         </ul>
                                 </div>
