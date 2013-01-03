@@ -6,6 +6,7 @@ from mako.template import Template
 from markdown import markdown
 from time import strftime
 from time import localtime
+from time import time
 
 from view.cache import CacheHandler
 from config import mc
@@ -85,9 +86,11 @@ class StaticBlog(CacheHandler):
         return html, update_time
 
     def fetch_get_request(self, lang='', folder='', filename=''):
+        start_time = time()
         env = {'request_root':request_root, 'update_time':strftime(TIME_FORMAT)}
         if lang == '': # /blog/
             t = Template(filename=os.path.join(template_root, 'front.html'), lookup=template_lookup)
+            env['serve_time'] = '%.6f' % (time() - start_time)
             return t.render(**env)
         else:
             t = Template(filename=os.path.join(template_root, 'base.html'), lookup=template_lookup)
@@ -115,5 +118,6 @@ class StaticBlog(CacheHandler):
                     body,update_time = self.load_markdown(lang, category, filename, static_root)
                 env['update_time'] = update_time
             env['body'] = body
+            env['serve_time'] = '%.6f' % (time() - start_time)
             return t.render(**env)
         return "req: %s, lang: %s, folder: %s, filename: %s" % (self.request.uri, lang, folder, filename)
