@@ -80,6 +80,7 @@ class StaticBlog(CacheHandler):
             update_time = strftime(TIME_FORMAT, localtime(os.path.getmtime(file_path)))
         except IOError:
             text = "## Not Found\n### File: %s\n### category: %s\n### root: %s\n" % (filename, category, static_root)
+            return "<h1>Not Found</h1>", update_time
         if text == '': # empty doc
             text = "# Empty Document"
         html = markdown(text, extensions=['codehilite(force_linenos=True)'])
